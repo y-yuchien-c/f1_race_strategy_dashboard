@@ -1,8 +1,10 @@
 import fastf1
 import pandas as pd
+import os
 
 class F1DataLoader:
     def __init__(self, cache_dir = './data/cache'):
+        os.makedirs(cache_dir, exist_ok=True)
         fastf1.Cache.enable_cache(cache_dir)
     
     def load_race(self, year, race_name):
