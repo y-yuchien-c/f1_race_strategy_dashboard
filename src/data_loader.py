@@ -24,15 +24,31 @@ class F1DataLoader:
 
         strategies = []
         for driver in laps['Driver'].unique():
-            driver_laps in laps['Driver'].unique()
-            stints = driver_laps.groupby('Stint').agg({
-                'Compound': 'first',
-                'LapNumber': ['min', 'max', 'count']
-            }).reset_index()
-        
-            strategies.append({
-                'Driver': driver,
-                'TotalStops': len(stints) - 1
-                'Stints': stints
+            driver_laps = laps[laps['Driver'] == driver] 
+
+            driver_laps = driver_laps[driver_laps['Compound'].notna()]
+
+            if len(driver_laps) == 0:
+                continue
+
+            stint_data = []
+            for stint_num in sorted(driver_laps['Stint'].unique()):
+                stint_laps = driver_laps[driver_laps['Stint'] == stint_num]
+            
+                stint_data.append({
+                    'Stint': int(stint_num),
+                    'Compound': stint_laps['Compound'].iloc[0],
+                    'StartLap': int(stint_laps['LapNumber'].min()),
+                    'EndLap': int(stint_laps['LapNumber'].max()),
+                    'LapCount': len(stint_laps)
+            })
+                
+            stints = pd.DataFrame(stint_data, columns=['Stint', 'Compound', 'StartLap', 'EndLap', 'LapCount'])
+
+            if len(stints) > 0:
+                strategies.append({
+                    'Driver': driver,
+                    'TotalStops': len(stints) - 1,
+                    'Stints': stints
             })
         return strategies

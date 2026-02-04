@@ -13,7 +13,7 @@ races = ['Bahrain', 'Saudi Arabia', 'Australia', 'Japan', 'Monaco', 'Spain']
 race = st.sidebar.selectbox("Grand Prix", races)
 
 @st.cache_data
-def load_race_data(year, race):
+def load_race_data(year, race, version =2):
     loader = F1DataLoader()
     session = loader.load_race(year, race)
     strategies =loader.get_strategy_summary(session)
@@ -21,12 +21,16 @@ def load_race_data(year, race):
 
 try:
     with st.spinner("Loading race data..."):
-        session, strategies = load_race_data(year, race)
+        session, strategies = load_race_data(year, race, version = 2)
+    
     st.success(f"Loaded {year} {race} Grand Prix")
-
+    
+    # Strategy Overview
     st.header("Strategy Overview")
     analyzer = StrategyAnalyzer(session)
     strategy_groups = analyzer.classify_strategies(strategies)
+    
+    # ... rest of code
 
     cols = st.columns(len(strategy_groups))
     for i, (stops, drivers) in enumerate(strategy_groups.items()):
@@ -46,8 +50,14 @@ try:
     if selected_drivers:
         pace_fig = viz.plot_pace_comparison(session.laps, selected_drivers)
         st.plotly_chart(pace_fig, use_container_width = True)
+
+
+    
 except Exception as e:
     st.error(f"Error loading data: {str(e)}")
-    st.info("Make sure you have an internet connection for first time data download")
+    import traceback
+    st.code(traceback.format_exc())  # Show full error trace
+    st.info("Make sure you have an internet connection for first-time data download")
+
             
         
