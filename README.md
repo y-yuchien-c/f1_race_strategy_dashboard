@@ -10,8 +10,7 @@ An interactive web dashboard analyzing Formula 1 tire strategies and race pace u
 - **Interactive Filtering**: Select specific drivers to compare performance
 
 ## 🌐 Live Demo
-**[Try the live dashboard here!](https://your-app.streamlit.app](https://f1racestrategydashboard.streamlit.app/
-)**
+**[Try the live dashboard here!](https://f1racestrategydashboard.streamlit.app/)**
 
 ## 🛠️ Technologies Used
 
