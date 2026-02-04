@@ -9,15 +9,9 @@ An interactive web dashboard analyzing Formula 1 tire strategies and race pace u
 - **Strategy Classification**: Analyze one-stop vs two-stop vs three-stop strategies
 - **Interactive Filtering**: Select specific drivers to compare performance
 
-## 🖼️ Screenshots
-
-*(Add your screenshots here - see instructions below)*
-
-### Strategy Timeline
-![Strategy Timeline](screenshots/strategy_timeline.png)
-
-### Pace Comparison
-![Pace Comparison](screenshots/pace_comparison.png)
+## 🌐 Live Demo
+**[Try the live dashboard here!]([https://your-app.streamlit.app](https://f1racestrategydashboard.streamlit.app/
+))**
 
 ## 🛠️ Technologies Used
 
