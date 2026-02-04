@@ -23,7 +23,7 @@ An interactive web dashboard analyzing Formula 1 tire strategies and race pace u
 ## 🚀 Installation
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/f1_race_strategy_dashboard.git
+git clone https://github.com/y-yuchien-c/f1_race_strategy_dashboard.git
 cd f1_race_strategy_dashboard
 
 # Create virtual environment
